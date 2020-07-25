@@ -1,28 +1,27 @@
 [
   {
-    "id": 1,
-    "title": "Lorem ipsum dolor sit amet",
-    "category_id": 1,
-    "tier": 1,
-    "thumbnailImage": "/img/category/project/project-thumbnail.png",
-    "featuredImage": "/img/category/project/project-featured.png",
-    "shortDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lacinia ex ut metus interdum semper.",
-    "longDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lacinia ex ut metus interdum semper. Vestibulum ultrices efficitur tortor ut viverra. Nunc quam mauris, gravida sit amet sapien vitae, cursus gravida risus. Mauris eget facilisis turpis, et dictum felis. Donec dignissim sem id elit posuere sollicitudin. Nulla facilisi. Phasellus tellus justo, interdum sit amet sagittis in, tincidunt quis sapien. Integer cursus dui est. Mauris congue enim a eros dapibus semper. Fusce vitae lorem vulputate, scelerisque magna nec, convallis turpis. Proin quis erat non mi dignissim tempor. Etiam tincidunt sodales magna at lacinia. Ut porttitor ligula ut leo efficitur, sit amet accumsan elit euismod. Duis auctor, nisi et cursus pellentesque, tellus quam dictum metus, ac lacinia sem mauris et erat. Nulla pulvinar elementum orci, consectetur consectetur ligula placerat et.",
+    "id":1,
+    "title":"Lorem ipsum dolor sit amet",
+    "category_id":1,
+    "tier":1,
+    "image":{
+      "title":"Lorem ipsum dolor sit amet",
+      "url":"/img/category/project/project-complementary-thumbnail-1.png"
+    },
+    "shortDescription":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lacinia ex ut metus interdum semper.",
+    "longDescription":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lacinia ex ut metus interdum semper. Vestibulum ultrices efficitur tortor ut viverra. Nunc quam mauris, gravida sit amet sapien vitae, cursus gravida risus. Mauris eget facilisis turpis, et dictum felis. Donec dignissim sem id elit posuere sollicitudin. Nulla facilisi. Phasellus tellus justo, interdum sit amet sagittis in, tincidunt quis sapien. Integer cursus dui est. Mauris congue enim a eros dapibus semper. Fusce vitae lorem vulputate, scelerisque magna nec, convallis turpis. Proin quis erat non mi dignissim tempor. Etiam tincidunt sodales magna at lacinia. Ut porttitor ligula ut leo efficitur, sit amet accumsan elit euismod. Duis auctor, nisi et cursus pellentesque, tellus quam dictum metus, ac lacinia sem mauris et erat. Nulla pulvinar elementum orci, consectetur consectetur ligula placerat et.",
     "complementaryImages":[
       {
-        "title": "Lorem ipsum dolor sit amet",
-        "thumbnail": "/img/category/project/project-complementary-thumbnail-1.png",
-        "fullsize": "/img/category/project/project-complementary-fullsize-1.png"
+        "title":"Lorem ipsum dolor sit amet",
+        "url":"/img/category/project/project-complementary-thumbnail-1.png"
       },
       {
-        "title": "Lorem ipsum dolor sit amet",
-        "thumbnail": "/img/category/project/project-complementary-thumbnail-2.png",
-        "fullsize": "/img/category/project/project-complementary-fullsize-2.png"
+        "title":"Lorem ipsum dolor sit amet",
+        "url":"/img/category/project/project-complementary-thumbnail-1.png"
       },
       {
-        "title": "Lorem ipsum dolor sit amet",
-        "thumbnail": "/img/category/project/project-complementary-thumbnail-3.png",
-        "fullsize": "/img/category/project/project-complementary-fullsize-3.png"
+        "title":"Lorem ipsum dolor sit amet",
+        "url":"/img/category/project/project-complementary-thumbnail-1.png"
       }
     ]
   }
