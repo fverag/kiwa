@@ -13,11 +13,10 @@
     }
   },
   "lint-staged": {
-    "**/*": [
+    "*.{js,css,md,jsx,ts,tsx}": [
       "eslint --fix",
       "prettier --write"
-    ],
-    "*.{js,css,md}": "prettier --write"
+    ]
   },
   "dependencies": {
     "@types/mongoose": "^5.7.32",
