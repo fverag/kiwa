@@ -1,0 +1,8 @@
+body {
+  font-family: Quicksand, sans-serif;
+}
+
+.bg-lines {
+  background-image: url(/img/lines.svg);
+  opacity: 0.07;
+}

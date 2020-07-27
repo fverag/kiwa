@@ -1,26 +1,50 @@
 {
-  "id": 1,
-  "title": "Lorem ipsum dolor sit amet",
+  "id": 2,
+  "title": "RRSS Recarga Fácil",
   "category_id": 1,
-  "tier": 1,
+  "tier": 3,
   "image": {
-    "title": "Lorem ipsum dolor sit amet",
-    "url": "/img/category/project/project-complementary-thumbnail-1.png"
+    "title": "Post Recarga Fácil Papa Granjera ",
+    "url": "https://res.cloudinary.com/hadmouse/image/upload/v1595701949/kiwa/cat-01/02/01-RF-Post-papa-granjera_qr9zhn.png"
   },
-  "shortDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lacinia ex ut metus interdum semper.",
-  "longDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lacinia ex ut metus interdum semper. Vestibulum ultrices efficitur tortor ut viverra. Nunc quam mauris, gravida sit amet sapien vitae, cursus gravida risus. Mauris eget facilisis turpis, et dictum felis. Donec dignissim sem id elit posuere sollicitudin. Nulla facilisi. Phasellus tellus justo, interdum sit amet sagittis in, tincidunt quis sapien. Integer cursus dui est. Mauris congue enim a eros dapibus semper. Fusce vitae lorem vulputate, scelerisque magna nec, convallis turpis. Proin quis erat non mi dignissim tempor. Etiam tincidunt sodales magna at lacinia. Ut porttitor ligula ut leo efficitur, sit amet accumsan elit euismod. Duis auctor, nisi et cursus pellentesque, tellus quam dictum metus, ac lacinia sem mauris et erat. Nulla pulvinar elementum orci, consectetur consectetur ligula placerat et.",
+  "shortDescription": "Diseño de piezas gráficas para las RRSS de Recarga Fácil",
+  "longDescription": "Diseñar piezas gráficas para las RRSS del sitio web de recargas número 1 de Chile www.recargafacil.cl ha sido de los proyectos más divertidos que me ha tocado realizar. Con la Papa como personaje central, envuelta en distintas situaciones cotidianas, animando a los usuarios a hacer las recargas de sus prepagos a través del sitio web, invitándolos a participar en concursos y caracterizándose de distintos personajes según las fechas del año. Prevaleció un uso preponderante del color, elementos vectoriales, fotográficos y lenguaje coloquial que llenaban de vida a este personaje.",
   "complementaryImages": [
     {
-      "title": "Lorem ipsum dolor sit amet",
-      "url": "/img/category/project/project-complementary-thumbnail-1.png"
+      "title": "Portada FB primaveral Recarga Fácil",
+      "url": "https://res.cloudinary.com/hadmouse/image/upload/v1595701950/kiwa/cat-01/02/02-RF-portada-primavera_obxh3n.jpg"
     },
     {
-      "title": "Lorem ipsum dolor sit amet",
-      "url": "/img/category/project/project-complementary-thumbnail-1.png"
+      "title": "Post FB recarga tu corazón Recarga Fácil",
+      "url": "https://res.cloudinary.com/hadmouse/image/upload/v1595701950/kiwa/cat-01/02/03-RF-Post-papa-recarga-tu-corazon_kzxsmk.jpg"
     },
     {
-      "title": "Lorem ipsum dolor sit amet",
-      "url": "/img/category/project/project-complementary-thumbnail-1.png"
+      "title": "Post FB 18 septiembre Recarga Fácil",
+      "url": "https://res.cloudinary.com/hadmouse/image/upload/v1595701950/kiwa/cat-01/02/04-RF-Post-papa-18sept_mi4vgz.png"
+    },
+    {
+      "title": "Post FB papa matea Recarga Fácil",
+      "url": "https://res.cloudinary.com/hadmouse/image/upload/v1595701950/kiwa/cat-01/02/05-RF-Post-papa-matea_aiqnr4.png"
+    },
+    {
+      "title": "Post FB papa Farkas Recarga Fácil",
+      "url": "https://res.cloudinary.com/hadmouse/image/upload/v1595701950/kiwa/cat-01/02/06-RF-Post-papa-farkas_vppjx4.png"
+    },
+    {
+      "title": "Portada FB abril recargas mil Recarga Fácil",
+      "url": "https://res.cloudinary.com/hadmouse/image/upload/v1595701950/kiwa/cat-01/02/07-RF-portada-abril-recargas1000_zn65jx.jpg"
+    },
+    {
+      "title": "Post FB halloween Recarga Fácil",
+      "url": "https://res.cloudinary.com/hadmouse/image/upload/v1595701950/kiwa/cat-01/02/08-RF-Post-papa-halloween_aa0kok.png"
+    },
+    {
+      "title": "Post FB papa interactiva Recarga Fácil",
+      "url": "https://res.cloudinary.com/hadmouse/image/upload/v1595701951/kiwa/cat-01/02/09-RF-Post-papa-interactiva_yyamg1.jpg"
+    },
+    {
+      "title": "Post FB papa viajera Recarga Fácil",
+      "url": "https://res.cloudinary.com/hadmouse/image/upload/v1595701951/kiwa/cat-01/02/10-RF-Post-papa-viajera_pflmvl.jpg"
     }
   ]
 }
