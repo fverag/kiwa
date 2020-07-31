@@ -1,11 +1,6 @@
 import React from "react";
 import clsx from "clsx";
-
-interface HeaderProps {
-  className?: string;
-  children?: React.ReactNode;
-  uselines?: boolean;
-}
+import { HeaderProps } from "../_types";
 
 const checkAndRenderLines = (useLines: boolean) => {
   if (useLines) {

@@ -6,3 +6,44 @@ body {
   background-image: url(/img/lines.svg);
   opacity: 0.07;
 }
+
+.is-active {
+  position: relative;
+}
+
+.is-active::after {
+  background-color: theme("colors.yellow");
+  border-radius: 8px;
+  bottom: 0;
+  content: "";
+  height: 4px;
+  left: 0;
+  position: absolute;
+  width: 50px;
+  z-index: 1;
+}
+
+/*
+@media screen and ( min-width: theme('screens.sm') ) {
+  .sm\:grid-rows-4-fixed {
+    grid-template-rows: repeat(4, 171px);
+  }
+}*/
+
+@media screen and (min-width: theme("screens.md")) {
+  .md\:grid-rows-4-fixed {
+    grid-template-rows: repeat(4, 171px);
+  }
+}
+
+@media screen and (min-width: theme("screens.lg")) {
+  .lg\:grid-rows-4-fixed {
+    grid-template-rows: repeat(4, 234px);
+  }
+}
+
+@media screen and (min-width: theme("screens.xl")) {
+  .xl\:grid-rows-4-fixed {
+    grid-template-rows: repeat(4, 298px);
+  }
+}

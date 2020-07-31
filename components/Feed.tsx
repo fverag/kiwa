@@ -23,14 +23,25 @@ const setProjectLiClasses = (entryTier: number) => {
   return clsx(baseClasses, entryClasses);
 };
 
+const setUlClasses = (isCurrent: boolean) => {
+  const isUlHidden = isCurrent ? "md:grid" : "hidden";
+  const baseUlClass =
+    "grid-cols-4 md:grid-rows-4-fixed lg:grid-rows-4-fixed xl:grid-rows-4-fixed gap-2 mt-6 space-y-2 md:space-y-0";
+  return clsx(isUlHidden, baseUlClass);
+};
+
+const setButtonClasses = (isCurrent: boolean): string[] => {
+  const baseButtonClass = "px-4 py-1 font-medium";
+  const spanButtoClass = isCurrent ? "is-active inline-block py-2" : "py-2";
+  return [baseButtonClass, spanButtoClass];
+};
+
 const Feed: React.FC = () => {
   const route = "/api/projects";
   const [category, setCategory] = useState(1);
   const { data, error } = useSWR(route, fetcherFunction);
-  const baseUlClass = "md:grid grid-cols-4 grid-rows-4 gap-2 mt-6 space-y-2 md:space-y-0";
-  const baseButtonClass = "px-4 py-2 font-medium";
   const ulGroups = [];
-  const navGroups = [];
+  const navGroup = [];
   const projectGroups = [
     {
       name: "Marketing digital",
@@ -70,31 +81,28 @@ const Feed: React.FC = () => {
   }
 
   for (let projectGroup of projectGroups) {
-    const isUlHidden = projectGroup.id === category ? null : "hidden";
-    const ulClasses = clsx(baseUlClass, isUlHidden);
-
-    const isButtonActive = projectGroup.id === category ? "active" : null;
-    const buttonClasses = clsx(baseButtonClass, isButtonActive);
+    const ulClasses = setUlClasses(projectGroup.id === category);
+    const buttonClasses = setButtonClasses(projectGroup.id === category);
 
     ulGroups.push(
       <ul className={ulClasses} key={projectGroup.id}>
         {projectGroup.entries}
       </ul>
     );
-    navGroups.push(
+    navGroup.push(
       <button
-        className={buttonClasses}
+        className={buttonClasses[0]}
         onClick={() => setCategory(projectGroup.id)}
         key={projectGroup.id}
       >
-        {projectGroup.name}
+        <span className={buttonClasses[1]}>{projectGroup.name}</span>
       </button>
     );
   }
 
   return (
-    <section className="container mx-auto py-5 px-8 bg-white rounded-lg -m-12 z-10 relative">
-      <nav className="flex justify-evenly">{navGroups}</nav>
+    <section className="sm:container mx-2 sm:mx-auto py-5 px-8 bg-white rounded-lg -mt-12 z-10 relative">
+      <nav className="flex justify-evenly">{navGroup}</nav>
       {ulGroups}
     </section>
   );

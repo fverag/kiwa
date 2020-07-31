@@ -1,12 +1,6 @@
 import React from "react";
 import clsx from "clsx";
-
-interface ButtonProps {
-  children?: React.ReactNode;
-  className?: string;
-  type?: string;
-  href?: string;
-}
+import { ButtonProps } from "../_types";
 
 const filterButtonClasses = (baseClasses, extraClasses) => {
   //adds a default display to the button if it hasn't been defined

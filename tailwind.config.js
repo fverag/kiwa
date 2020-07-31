@@ -18,9 +18,11 @@ module.exports = {
       black: "#000",
       white: "#fff",
       grey: "#595959",
+      lightgrey: "#F7F7F7",
 
       purple: "#7F3DF7",
       pink: "#FA45D0",
+      yellow: "#ffc400",
     },
     linearGradientColors: {
       "purple-pink": ["#7F3DF7", "#FA45D0"],

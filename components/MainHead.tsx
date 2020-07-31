@@ -1,10 +1,6 @@
 import React from "react";
 import Head from "next/head";
-
-interface MainHeadProps {
-  title?: string;
-  children?: React.ReactNode;
-}
+import { MainHeadProps } from "../_types";
 
 const MainHead: React.FC<MainHeadProps> = ({
   title = "Hola Soy Vale",

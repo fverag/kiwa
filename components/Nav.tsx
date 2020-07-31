@@ -1,9 +1,6 @@
 import React from "react";
 import Link from "next/link";
-
-interface HeaderProps {
-  className?: string;
-}
+import { HeaderProps } from "../_types";
 
 const Nav: React.FC<HeaderProps> = () => {
   return (
@@ -16,7 +13,10 @@ const Nav: React.FC<HeaderProps> = () => {
         </a>
       </Link>
       <Link href="/about">
-        <a className="ml-auto p-2">Sobre mi trabajo</a>
+        <a className="ml-auto p-2">
+          <span className="hidden sm:inline-block">Sobre mi&nbsp;</span>
+          <span className="capitalize sm:normal-case">trabajo</span>
+        </a>
       </Link>
       <Link href="/skills">
         <a className="p-2">Skills</a>

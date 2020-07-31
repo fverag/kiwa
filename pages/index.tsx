@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import Nav from "../components/Nav";
 import Button from "../components/Button";
 import Feed from "../components/Feed";
+import Section from "../components/Section";
 
 const index = () => (
   <>
@@ -24,6 +25,10 @@ const index = () => (
       </Header>
 
       <Feed />
+
+      <Section className="bg-lightgrey">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, quasi?</p>
+      </Section>
     </Main>
   </>
 );
