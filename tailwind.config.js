@@ -19,8 +19,13 @@ module.exports = {
       white: "#fff",
       grey: "#595959",
       lightgrey: "#F7F7F7",
+      mediumlightgrey: "#ccc",
+      mediumgrey: "#DADADA",
+      darkergrey: "#595959",
+      darkgrey: "#333",
 
       purple: "#7F3DF7",
+      darkpurple: "#8A3EF3",
       pink: "#FA45D0",
       yellow: "#ffc400",
     },

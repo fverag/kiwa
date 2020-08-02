@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { HeaderProps } from "../_types";
+import AnchorLink from "react-anchor-link-smooth-scroll";
 
 const Nav: React.FC<HeaderProps> = () => {
   return (
@@ -12,15 +13,13 @@ const Nav: React.FC<HeaderProps> = () => {
           </h1>
         </a>
       </Link>
-      <Link href="/about">
-        <a className="ml-auto p-2">
-          <span className="hidden sm:inline-block">Sobre mi&nbsp;</span>
-          <span className="capitalize sm:normal-case">trabajo</span>
-        </a>
-      </Link>
-      <Link href="/skills">
-        <a className="p-2">Skills</a>
-      </Link>
+      <AnchorLink className="ml-auto p-2" href="#works">
+        <span className="hidden sm:inline-block">Sobre mi&nbsp;</span>
+        <span className="capitalize sm:normal-case">trabajo</span>
+      </AnchorLink>
+      <AnchorLink className="p-2" href="#skills">
+        Skills
+      </AnchorLink>
       <Link href="/contact">
         <a className="p-2">Contacto</a>
       </Link>

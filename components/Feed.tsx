@@ -3,6 +3,8 @@ import clsx from "clsx";
 import useSWR from "swr";
 import fetcherFunction from "../utilities/fetcher";
 import ProjectPreview from "./ProjectPreview";
+import { PROJECT_GROUPS } from "../_constants";
+import { WithId } from "../_types";
 
 const setProjectLiClasses = (entryTier: number) => {
   const baseClasses = "rounded-lg overflow-hidden";
@@ -31,34 +33,18 @@ const setUlClasses = (isCurrent: boolean) => {
 };
 
 const setButtonClasses = (isCurrent: boolean): string[] => {
-  const baseButtonClass = "px-4 py-1 font-medium";
+  const baseButtonClass = "px-4 py-1 font-medium outline-none-important";
   const spanButtoClass = isCurrent ? "is-active inline-block py-2" : "py-2";
   return [baseButtonClass, spanButtoClass];
 };
 
-const Feed: React.FC = () => {
+const Feed: React.FC<WithId> = ({ id }: WithId) => {
   const route = "/api/projects";
   const [category, setCategory] = useState(1);
   const { data, error } = useSWR(route, fetcherFunction);
   const ulGroups = [];
   const navGroup = [];
-  const projectGroups = [
-    {
-      name: "Marketing digital",
-      id: 1,
-      entries: [],
-    },
-    {
-      name: "Diseño Web / UI",
-      id: 2,
-      entries: [],
-    },
-    {
-      name: "Identidad",
-      id: 3,
-      entries: [],
-    },
-  ];
+  const projectGroups = JSON.parse(JSON.stringify(PROJECT_GROUPS));
 
   if (error) {
     return <div>{error.messsage}</div>;
@@ -101,7 +87,10 @@ const Feed: React.FC = () => {
   }
 
   return (
-    <section className="sm:container mx-2 sm:mx-auto py-5 px-8 bg-white rounded-lg -mt-12 z-10 relative">
+    <section
+      id={id}
+      className="sm:container mx-2 sm:mx-auto py-5 px-8 bg-white rounded-lg -mt-12 z-10 relative"
+    >
       <nav className="flex justify-evenly">{navGroup}</nav>
       {ulGroups}
     </section>

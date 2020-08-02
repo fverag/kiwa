@@ -20,4 +20,4 @@ db.once("open", () => {
 });
 
 export default db;
-export { connected };
+export { connected as connect };

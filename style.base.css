@@ -23,12 +23,9 @@ body {
   z-index: 1;
 }
 
-/*
-@media screen and ( min-width: theme('screens.sm') ) {
-  .sm\:grid-rows-4-fixed {
-    grid-template-rows: repeat(4, 171px);
-  }
-}*/
+.outline-none-important {
+  outline: none !important;
+}
 
 @media screen and (min-width: theme("screens.md")) {
   .md\:grid-rows-4-fixed {
@@ -46,4 +43,18 @@ body {
   .xl\:grid-rows-4-fixed {
     grid-template-rows: repeat(4, 298px);
   }
+}
+
+.with-rounded-fix::before {
+  background-image: radial-gradient(transparent 6px, #f7f7f7 6px);
+  background-position-x: -6px;
+  background-repeat: no-repeat;
+  content: "";
+  display: block;
+  height: 100%;
+  left: -6px;
+  position: absolute;
+  top: 0;
+  width: 12px;
+  z-index: 2;
 }

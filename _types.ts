@@ -1,8 +1,10 @@
 export interface ButtonProps {
   children?: React.ReactNode;
   className?: string;
-  type?: string;
+  type?: "a" | "button" | "div";
   href?: string;
+  variant?: string;
+  target?: string;
 }
 
 export interface HeaderProps {
@@ -45,4 +47,33 @@ export interface ProjectPreviewEntry {
 
 export interface ProjectPreviewProps {
   entry: ProjectPreviewEntry;
+}
+
+export type Skills = SkillProps[];
+
+export interface SkillProps {
+  image: string;
+  title: string;
+}
+
+export interface SkillsProps {
+  skills: Skills;
+}
+
+export interface SkillScoreProps {
+  skill: string;
+  score: number;
+}
+
+export interface SkillsScoresProps {
+  skills: SkillScoreProps[];
+}
+
+export interface WithChildren {
+  children?: React.ReactNode;
+  className?: string;
+}
+
+export interface WithId {
+  id?: string;
 }

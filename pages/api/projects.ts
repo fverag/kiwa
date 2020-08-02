@@ -1,4 +1,4 @@
-//import { connected } from "../../utilities/db";
+import { connect } from "../../utilities/db";
 import projectsModel from "../../utilities/schemas/projects";
 import sanitize from "../../utilities/sanitize";
 
@@ -24,7 +24,7 @@ export default async (request, response) => {
   response.setHeader("Content-Type", "application/json");
 
   response.json({
-    //connectionStatus: connected,
+    connectionStatus: connect,
     data: data,
   });
 };

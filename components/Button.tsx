@@ -2,17 +2,61 @@ import React from "react";
 import clsx from "clsx";
 import { ButtonProps } from "../_types";
 
-const filterButtonClasses = (baseClasses, extraClasses) => {
+const variantClasses = {
+  rounded: "font-bold border-2 border-white rounded-full uppercase px-8 py-4 my-4",
+  link: "text-base p-2 underline font-normal",
+};
+
+const typeClasses = {
+  div: "cursor-pointer",
+};
+
+const getButtonVariantClasses = (variant: string) => {
+  if (variantClasses[variant] !== undefined) {
+    return variantClasses[variant];
+  }
+
+  return null;
+};
+
+const getTypeClasses = (type: ButtonProps["type"]) => {
+  if (typeClasses[type] !== undefined) {
+    return typeClasses[type];
+  }
+
+  return null;
+};
+
+const filterButtonClasses = (baseClasses, typeClasses, variantClasses, extraClasses) => {
   //adds a default display to the button if it hasn't been defined
   const checkAgaintst = ["block", "inline-block"];
-  const arrExtraClasses = extraClasses.split(" ");
-  const displayClass = {
-    "inline-block":
-      arrExtraClasses.indexOf(checkAgaintst[0]) === -1 &&
-      arrExtraClasses.indexOf(checkAgaintst[1]) === -1,
-  };
+  const arrExtraClasses = extraClasses !== undefined ? extraClasses.split(" ") : null;
+  const displayClass =
+    arrExtraClasses !== null
+      ? {
+          "inline-block":
+            arrExtraClasses.indexOf(checkAgaintst[0]) === -1 &&
+            arrExtraClasses.indexOf(checkAgaintst[1]) === -1,
+        }
+      : null;
 
-  return clsx(baseClasses, displayClass, extraClasses);
+  return clsx(baseClasses, typeClasses, variantClasses, displayClass, extraClasses);
+};
+
+const getClickFunction = (type: ButtonProps["type"]) => {
+  if (type === "div") {
+    return (event) => {
+      if (event.target.children) {
+        event.stopPropagation();
+
+        if (event.target.children[0] !== undefined) {
+          event.target.children[0].click();
+        }
+      }
+    };
+  }
+
+  return null;
 };
 
 const Button: React.FC<ButtonProps> = ({
@@ -20,14 +64,18 @@ const Button: React.FC<ButtonProps> = ({
   className,
   children,
   href = null,
+  variant = "rounded",
+  target = null,
 }: ButtonProps) => {
   const Type = type as keyof JSX.IntrinsicElements;
-  const baseClasses =
-    "border-2 border-white rounded-full uppercase px-8 py-3 my-4 text-center font-bold";
-  const classes = filterButtonClasses(baseClasses, className);
+  const baseClasses = "text-center";
+  const typeClasses = getTypeClasses(type);
+  const variantClasses = getButtonVariantClasses(variant);
+  const classes = filterButtonClasses(baseClasses, typeClasses, variantClasses, className);
+  const onClick = getClickFunction(type);
 
   return (
-    <Type className={classes} href={href}>
+    <Type className={classes} href={href} target={target} onClick={onClick}>
       {children}
     </Type>
   );

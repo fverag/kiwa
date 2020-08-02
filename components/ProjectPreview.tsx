@@ -95,7 +95,7 @@ const setImageSrcsetAndSizes = (imageTier: number, imageUrl: string) => {
   return [imageUrls.join(", "), imageSizes.join(", ")];
 };
 
-export const ProjectPreview: React.FC<ProjectPreviewProps> = ({ entry }: ProjectPreviewProps) => {
+const ProjectPreview: React.FC<ProjectPreviewProps> = ({ entry }: ProjectPreviewProps) => {
   const [srcset, sizes] = setImageSrcsetAndSizes(entry.tier, entry.image.url);
   const slug = sanitize(entry.title);
   const url = `/project/${slug}`;
@@ -113,3 +113,5 @@ export const ProjectPreview: React.FC<ProjectPreviewProps> = ({ entry }: Project
     </Link>
   );
 };
+
+export default ProjectPreview;
