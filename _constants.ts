@@ -1,76 +1,94 @@
-const BASE_URL = "http://localhost:3000";
-const PROJECT_GROUPS = [
+const CATEGORIES = [
   {
-    name: "Marketing digital",
+    name: 'Marketing digital',
     id: 1,
     entries: [],
   },
   {
-    name: "Diseño Web / UI",
+    name: 'Diseño Web / UI',
     id: 2,
     entries: [],
   },
   {
-    name: "Identidad",
+    name: 'Identidad',
     id: 3,
     entries: [],
   },
 ];
 const SKILLS = [
   {
-    title: "Fácil adaptación y trabajo en equipo",
+    title: 'Fácil adaptación y trabajo en equipo',
     image:
-      "https://res.cloudinary.com/hadmouse/image/upload/v1596166758/kiwa/skills/Icon-skill-01_m5c9vg.svg",
+      'https://res.cloudinary.com/hadmouse/image/upload/v1596166758/kiwa/skills/Icon-skill-01_m5c9vg.svg',
   },
   {
-    title: "Responsabilidad, organización y puntualidad.",
+    title: 'Responsabilidad, organización y puntualidad.',
     image:
-      "https://res.cloudinary.com/hadmouse/image/upload/v1596166759/kiwa/skills/Icon-skill-02_oylo9t.svg",
+      'https://res.cloudinary.com/hadmouse/image/upload/v1596166759/kiwa/skills/Icon-skill-02_oylo9t.svg',
   },
   {
-    title: "Observación, análisis y capacidad de resolución de problemas.",
+    title: 'Observación, análisis y capacidad de resolución de problemas.',
     image:
-      "https://res.cloudinary.com/hadmouse/image/upload/v1596166759/kiwa/skills/Icon-skill-03_ovkis3.svg",
+      'https://res.cloudinary.com/hadmouse/image/upload/v1596166759/kiwa/skills/Icon-skill-03_ovkis3.svg',
   },
   {
-    title: "Actitud propositiva, creativa y crítica.",
+    title: 'Actitud propositiva, creativa y crítica.',
     image:
-      "https://res.cloudinary.com/hadmouse/image/upload/v1596166759/kiwa/skills/Icon-skill-04_dz2tpr.svg",
+      'https://res.cloudinary.com/hadmouse/image/upload/v1596166759/kiwa/skills/Icon-skill-04_dz2tpr.svg',
   },
 ];
 const SKILLS_SCORES = [
   {
-    skill: "Photoshop",
+    skill: 'Photoshop',
     score: 80,
   },
   {
-    skill: "Adobe XD / Sketch / Figma",
+    skill: 'Adobe XD / Sketch / Figma',
     score: 80,
   },
   {
-    skill: "Illustrator",
+    skill: 'Illustrator',
     score: 80,
   },
   {
-    skill: "InDesign",
+    skill: 'InDesign',
     score: 60,
   },
   {
-    skill: "Dreamweaver",
+    skill: 'Dreamweaver',
     score: 60,
   },
   {
-    skill: "Office",
+    skill: 'Office',
     score: 60,
   },
   {
-    skill: "Miró",
+    skill: 'Miró',
     score: 30,
   },
   {
-    skill: "Premiere",
+    skill: 'Premiere',
     score: 30,
   },
 ];
 
-export { BASE_URL, PROJECT_GROUPS, SKILLS, SKILLS_SCORES };
+const ANALYTICS_ID = process.env.NEXT_PUBLIC_ANALYTICS_ID;
+const BASE_URL = process.env.BASE_URL;
+const MONGODB_CONNECT = process.env.MONGODB_CONNECT;
+const RC_PUBLIC_KEY = process.env.NEXT_PUBLIC_RC_PUBLIC_KEY;
+const RC_SECRET_KEY = process.env.RC_SECRET_KEY;
+const RC_SCORE_THRESHOLD = 0.5;
+const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
+
+export {
+  ANALYTICS_ID,
+  BASE_URL,
+  CATEGORIES,
+  MONGODB_CONNECT,
+  SKILLS,
+  SKILLS_SCORES,
+  RC_PUBLIC_KEY,
+  RC_SCORE_THRESHOLD,
+  RC_SECRET_KEY,
+  SENDGRID_API_KEY,
+};

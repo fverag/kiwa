@@ -1,22 +1,22 @@
-import React from "react";
-import MainHead from "../components/MainHead";
-import Main from "../components/Main";
-import Header from "../components/Header";
-import Nav from "../components/Nav";
-import Button from "../components/Button";
-import Feed from "../components/Feed";
-import Section from "../components/Section";
-import Skills from "../components/Skills";
-import SkillsScores from "../components/SkillsScores";
-import Footer from "../components/Footer";
-import { SKILLS, SKILLS_SCORES } from "./../_constants";
-import AnchorLink from "react-anchor-link-smooth-scroll";
+import React from 'react';
+import MainHead from '../components/MainHead';
+import Main from '../components/Main';
+import Header from '../components/Header';
+import Nav from '../components/Nav';
+import Button from '../components/Button';
+import Feed from '../components/Feed';
+import Section from '../components/Section';
+import Skills from '../components/Skills';
+import SkillsScores from '../components/SkillsScores';
+import Footer from '../components/Footer';
+import { SKILLS, SKILLS_SCORES } from './../_constants';
+import AnchorLink from 'react-anchor-link-smooth-scroll';
 
 const index = () => (
   <>
     <MainHead />
     <Main id="top">
-      <Header className="text-white bg-gradient-r-purple-pink pb-32" uselines>
+      <Header className="pb-32" uselines>
         <Nav />
         <h2 className="text-center md:text-left text-4xl md:text-5xl font-medium max-w-sm md:max-w-2xl leading-none mx-auto md:mx-0 mb-8 md:mb-4 mt-6">
           ¡Hola! Me dicen Vale y soy diseñadora gráfica

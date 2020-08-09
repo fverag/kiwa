@@ -26,5 +26,8 @@
         "args": "none"
       }
     ]
+  },
+  "globals": {
+    "grecaptcha": "readonly"
   }
 }

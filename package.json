@@ -19,14 +19,21 @@
     ]
   },
   "dependencies": {
+    "@types/grecaptcha": "^3.0.1",
     "@types/mongoose": "^5.7.32",
     "@zeit/next-css": "^1.0.1",
+    "axios": "^0.19.2",
     "clsx": "^1.1.1",
+    "cookie": "^0.4.1",
     "mongoose": "^5.9.25",
     "next": "9.4.4",
+    "nodemailer": "^6.4.11",
+    "nodemailer-sendgrid-transport": "^0.2.0",
+    "qs": "^6.9.4",
     "react": "16.13.1",
     "react-anchor-link-smooth-scroll": "^1.0.12",
     "react-dom": "16.13.1",
+    "recaptcha-v3": "^1.8.0",
     "swr": "^0.2.3",
     "tailwindcss": "^1.5.1",
     "tailwindcss-gradients": "^3.0.0"

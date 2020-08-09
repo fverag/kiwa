@@ -1,16 +1,17 @@
-import React from "react";
-import Link from "next/link";
-import { ProjectPreviewProps } from "../_types";
-import sanitize from "../utilities/sanitize";
+import React, { useState } from 'react';
+import Link from 'next/link';
+import { ProjectPreviewProps } from '../_types';
+import sanitize from '../utilities/sanitize';
+import clsx from 'clsx';
 
 const filterPlaceholder = (imageUrl: string) => {
-  return imageUrl.replace("/image/upload", "/image/upload/${t}");
+  return imageUrl.replace('/image/upload', '/image/upload/${t}');
 };
 
 const solveImageSizeExpression = (entry) => {
-  if (Object.prototype.hasOwnProperty.call(entry, "until")) {
+  if (Object.prototype.hasOwnProperty.call(entry, 'until')) {
     return `(max-width: ${entry.until}px) ${entry.width}px`;
-  } else if (Object.prototype.hasOwnProperty.call(entry, "from")) {
+  } else if (Object.prototype.hasOwnProperty.call(entry, 'from')) {
     return `(min-width: ${entry.from}px) ${entry.width}px`;
   }
 
@@ -25,17 +26,17 @@ const setImageSrcsetAndSizes = (imageTier: number, imageUrl: string) => {
       transformations = [
         {
           width: 295,
-          transf: "c_fill,w_295",
+          transf: 'c_fill,w_295',
           until: 400,
         },
         {
           width: 476,
-          transf: "c_fill,w_570,h_570",
+          transf: 'c_fill,w_570,h_570',
           until: 1280,
         },
         {
           width: 298,
-          transf: "c_fill,w_298,w_298",
+          transf: 'c_fill,w_298,w_298',
         },
       ];
       break;
@@ -43,17 +44,17 @@ const setImageSrcsetAndSizes = (imageTier: number, imageUrl: string) => {
       transformations = [
         {
           width: 295,
-          transf: "c_fill,w_295,h_150",
+          transf: 'c_fill,w_295,h_150',
           until: 400,
         },
         {
           width: 640,
-          transf: "c_fill,w_640,h_320",
+          transf: 'c_fill,w_640,h_320',
           until: 768,
         },
         {
           width: 604,
-          transf: "c_fill,w_604,h_298",
+          transf: 'c_fill,w_604,h_298',
         },
       ];
       break;
@@ -61,17 +62,17 @@ const setImageSrcsetAndSizes = (imageTier: number, imageUrl: string) => {
       transformations = [
         {
           width: 295,
-          transf: "c_scale,w_295",
+          transf: 'c_scale,w_295',
           until: 400,
         },
         {
           width: 476,
-          transf: "c_scale,w_570,h_570",
+          transf: 'c_scale,w_570,h_570',
           until: 1280,
         },
         {
           width: 604,
-          transf: "c_scale,w_604,h_604",
+          transf: 'c_scale,w_604,h_604',
         },
       ];
       break;
@@ -85,20 +86,30 @@ const setImageSrcsetAndSizes = (imageTier: number, imageUrl: string) => {
   for (let key in transformations) {
     if (Object.prototype.hasOwnProperty.call(transformations, key)) {
       const value = transformations[key];
-      const imageUrl = filterableImage.replace("${t}", value.transf);
+      const imageUrl = filterableImage.replace('${t}', value.transf);
 
       imageUrls.push(`${imageUrl} ${value.width}w`);
       imageSizes.push(solveImageSizeExpression(value));
     }
   }
 
-  return [imageUrls.join(", "), imageSizes.join(", ")];
+  return [imageUrls.join(', '), imageSizes.join(', ')];
 };
 
 const ProjectPreview: React.FC<ProjectPreviewProps> = ({ entry }: ProjectPreviewProps) => {
   const [srcset, sizes] = setImageSrcsetAndSizes(entry.tier, entry.image.url);
   const slug = sanitize(entry.title);
   const url = `/project/${slug}`;
+  const [opacity, setOpacity] = useState(0);
+  const baseImgClasses = 'w-full h-full object-cover object-center transition-opacity duration-300';
+  const imgOpacityClasses = {
+    'opacity-100': opacity === 1,
+    'opacity-0': opacity === 0,
+  };
+  const imgClasses = clsx(baseImgClasses, imgOpacityClasses);
+  const onLoadFunction = () => {
+    setOpacity(1);
+  };
 
   return (
     <Link href={url}>
@@ -107,7 +118,8 @@ const ProjectPreview: React.FC<ProjectPreviewProps> = ({ entry }: ProjectPreview
           src={entry.image.url}
           srcSet={srcset}
           sizes={sizes}
-          className="w-full h-full object-cover object-center"
+          className={imgClasses}
+          onLoad={onLoadFunction}
         />
       </a>
     </Link>
