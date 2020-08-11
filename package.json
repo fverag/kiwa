@@ -5,8 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "postbuild": "next-on-netlify"
+    "start": "next start"
   },
   "husky": {
     "hooks": {
@@ -28,7 +27,6 @@
     "cookie": "^0.4.1",
     "mongoose": "^5.9.25",
     "next": "9.4.4",
-    "next-on-netlify": "^2.3.2",
     "nodemailer": "^6.4.11",
     "nodemailer-sendgrid-transport": "^0.2.0",
     "qs": "^6.9.4",
