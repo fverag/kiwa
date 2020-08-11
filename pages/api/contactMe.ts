@@ -1,6 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable no-unused-vars */
-import { RC_SCORE_THRESHOLD, RC_SECRET_KEY, SENDGRID_API_KEY } from '../../_constants';
+import {
+  MOCK_CONTACT_FORM,
+  RC_SCORE_THRESHOLD,
+  RC_SECRET_KEY,
+  SENDGRID_API_KEY,
+} from '../../_constants';
 import axios from 'axios';
 import qs from 'qs';
 import nodemailer from 'nodemailer';
@@ -8,6 +11,7 @@ import sendgridTransport from 'nodemailer-sendgrid-transport';
 import hasher from '../../utilities/hasher';
 import validateForm from '../../utilities/formValidation';
 import emailTemplate from '../../utilities/emailTemplate';
+import { ContactFormResponse } from '../../_types';
 
 const getRecaptchaScore = async (token) => {
   const rcVerifyRoute = 'https://www.google.com/recaptcha/api/siteverify';
@@ -28,7 +32,7 @@ const getRecaptchaScore = async (token) => {
       }
       return 0;
     })
-    .catch((error) => {
+    .catch(() => {
       return 0;
     });
 
@@ -62,7 +66,7 @@ const sendMail = ({ fromEmail, fromName, replyToName, replyToEmail, html, toEmai
   });
 };
 
-export default async (request, response) => {
+export default async (request, response): Promise<ContactFormResponse> => {
   const bodyRequest = request.body;
   const ip = request.headers['x-forwarded-for'] || request.connection.remoteAddress;
   const hash = hasher(ip);
@@ -82,7 +86,7 @@ export default async (request, response) => {
 
   let message = score >= RC_SCORE_THRESHOLD ? successMessage : errorMessage;
   let status = score >= RC_SCORE_THRESHOLD;
-  let sendEmail = null;
+  let sendEmail = false;
 
   if (!isValidForm) {
     message = 'No has ingresado los campos correctamente';
@@ -98,17 +102,21 @@ export default async (request, response) => {
   response.setHeader('Content-Type', 'application/json');
 
   if (status) {
-    sendEmail = await sendMail({
-      fromName: 'Fabián Vera',
-      fromEmail: 'fabian.vera.g@gmail.com',
-      toEmail: 'valentinamorall@gmail.com',
-      replyToEmail: bodyRequest.email,
-      replyToName: bodyRequest.name,
-      html: emailTemplate(bodyRequest),
-    }).then(() => true);
+    if (MOCK_CONTACT_FORM) {
+      sendEmail = true;
+    } else {
+      sendEmail = await sendMail({
+        fromName: 'Fabián Vera',
+        fromEmail: 'fabian.vera.g@gmail.com',
+        toEmail: 'valentinamorall@gmail.com',
+        replyToEmail: bodyRequest.email,
+        replyToName: bodyRequest.name,
+        html: emailTemplate(bodyRequest),
+      }).then(() => true);
+    }
   }
 
-  response.json({
+  return response.json({
     sentEmail: sendEmail,
     status,
     message,

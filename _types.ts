@@ -3,7 +3,7 @@ export interface ButtonProps {
   className?: string;
   type?: 'a' | 'button' | 'div';
   href?: string;
-  variant?: string;
+  variant?: 'clear' | 'link' | 'rounded';
   target?: string;
   onClick?: () => void;
 }
@@ -13,6 +13,12 @@ export interface ContactFormRequest {
   email: string;
   message: string;
   hash?: string;
+}
+
+export interface ContactFormResponse {
+  sentEmail: boolean;
+  status: boolean;
+  message: string;
 }
 
 export interface HeaderProps {

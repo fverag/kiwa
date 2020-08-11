@@ -1,0 +1,98 @@
+.bg-lines {
+  background-image: url(https://res.cloudinary.com/hadmouse/image/upload/v1596999113/kiwa/ilustracion-header_oe3s9g.svg);
+  background-position: right center;
+}
+
+.is-active {
+  position: relative;
+}
+
+.is-active::after {
+  background-color: theme('colors.yellow');
+  border-radius: 8px;
+  bottom: 0;
+  content: '';
+  height: 4px;
+  left: calc(50% - 25px);
+  position: absolute;
+  width: 50px;
+  z-index: 1;
+}
+
+.outline-none-important {
+  outline: none !important;
+}
+
+@media screen and (min-width: theme('screens.md')) {
+  .md\:grid-rows-4-fixed {
+    grid-template-rows: repeat(4, 171px);
+  }
+}
+
+@media screen and (min-width: theme('screens.lg')) {
+  .lg\:grid-rows-4-fixed {
+    grid-template-rows: repeat(4, 234px);
+  }
+}
+
+@media screen and (min-width: theme('screens.xl')) {
+  .xl\:grid-rows-4-fixed {
+    grid-template-rows: repeat(4, 298px);
+  }
+}
+
+.with-rounded-fix::before {
+  background-image: radial-gradient(transparent 6px, #f7f7f7 6px);
+  background-position-x: -6px;
+  background-repeat: no-repeat;
+  content: '';
+  display: block;
+  height: 100%;
+  left: -6px;
+  position: absolute;
+  top: 0;
+  width: 12px;
+  z-index: 2;
+}
+
+@keyframes placeholder-anim {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.placeholder-anim {
+  animation-name: placeholder-anim;
+  animation-iteration-count: infinite;
+  animation-duration: 1s;
+}
+
+@media screen and (min-width: theme('screens.sm')) {
+  .sm\:section-full-height {
+    min-height: calc(100vh - (106px + 258px));
+  }
+}
+
+.text-input {
+  @apply border-b border-grey block py-3 mt-4 mb-8 w-full;
+}
+
+.text-input::placeholder {
+  @apply text-grey;
+}
+
+.text-input:focus {
+  @apply outline-none border-purple;
+}
+
+.textarea-input {
+  @apply rounded-md border px-3 resize-y;
+  min-height: 6rem;
+  max-height: 12rem;
+}

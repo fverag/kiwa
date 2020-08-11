@@ -8,7 +8,7 @@ import { CATEGORIES } from '../_constants';
 import { WithId } from '../_types';
 
 const sectionClasses =
-  'sm:container mx-2 sm:mx-auto py-5 px-8 bg-white rounded-lg -mt-12 z-10 relative';
+  'sm:container mx-2 sm:mx-auto py-5 px-5 sm:px-8 bg-white rounded-lg -mt-16 z-10 relative';
 
 const setProjectLiClasses = (entryTier: number) => {
   const baseClasses = 'rounded-lg overflow-hidden';
@@ -36,13 +36,15 @@ const setUlClasses = (isCurrent: boolean) => {
   return clsx(isUlHidden, baseUlClass);
 };
 
-const setButtonClasses = (isCurrent: boolean): string[] => {
-  const baseButtonClass = 'px-4 py-1 font-medium outline-none-important';
-  const spanButtoClass = isCurrent ? 'is-active inline-block py-2' : 'py-2';
-  return [baseButtonClass, spanButtoClass];
+const setButtonClasses = (isCurrent: boolean): string => {
+  const baseButtonClass = 'inline-block font-medium px-2 sm:px-4 pt-1 pb-2 outline-none-important';
+  const activeClass = {
+    'is-active': isCurrent,
+  };
+  return clsx(baseButtonClass, activeClass);
 };
 
-const renderPlaceholderUlAndButtons = (id) => {
+const renderPlaceholderUlAndButtons = (id: string) => {
   const projectGroups = JSON.parse(JSON.stringify(CATEGORIES));
   const ulClasses = setUlClasses(true);
   const navGroup = [];
@@ -65,15 +67,15 @@ const renderPlaceholderUlAndButtons = (id) => {
     const buttonClasses = setButtonClasses(projectGroup.id === 1);
 
     navGroup.push(
-      <button className={buttonClasses[0]} key={projectGroup.id}>
-        <span className={buttonClasses[1]}>{projectGroup.name}</span>
+      <button className={buttonClasses} key={projectGroup.id}>
+        <span>{projectGroup.name}</span>
       </button>
     );
   }
 
   return (
     <section id={id} className={sectionClasses}>
-      <nav className="flex justify-evenly">{navGroup}</nav>
+      <nav className="flex justify-evenly items-start">{navGroup}</nav>
       <ul className={ulClasses}>{projectsPlaceholders}</ul>
     </section>
   );
@@ -118,18 +120,18 @@ const Feed: React.FC<WithId> = ({ id }: WithId) => {
     );
     navGroup.push(
       <button
-        className={buttonClasses[0]}
+        className={buttonClasses}
         onClick={() => setCategory(projectGroup.id)}
         key={projectGroup.id}
       >
-        <span className={buttonClasses[1]}>{projectGroup.name}</span>
+        <span>{projectGroup.name}</span>
       </button>
     );
   }
 
   return (
     <section id={id} className={sectionClasses}>
-      <nav className="flex justify-evenly">{navGroup}</nav>
+      <nav className="flex justify-evenly items-start">{navGroup}</nav>
       {ulGroups}
     </section>
   );

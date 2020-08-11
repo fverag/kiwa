@@ -6,13 +6,18 @@ import AnchorLink from 'react-anchor-link-smooth-scroll';
 
 const getVariableLinks = (router) => {
   const isHome = router.pathname === '/';
+  const trabajos = (
+    <>
+      <span className="hidden sm:inline-block">Sobre mi Trabajo</span>
+      <span className="sm:hidden">Trabajos</span>
+    </>
+  );
 
   if (isHome) {
     return (
       <>
         <AnchorLink className="ml-auto p-2" href="#works">
-          <span className="hidden sm:inline-block">Sobre mi&nbsp;</span>
-          <span className="capitalize sm:normal-case">trabajo</span>
+          {trabajos}
         </AnchorLink>
         <AnchorLink className="p-2" href="#skills">
           Skills
@@ -24,10 +29,7 @@ const getVariableLinks = (router) => {
   return (
     <>
       <Link href="/#works">
-        <a className="ml-auto p-2">
-          <span className="hidden sm:inline-block">Sobre mi&nbsp;</span>
-          <span className="capitalize sm:normal-case">trabajo</span>
-        </a>
+        <a className="ml-auto p-2">{trabajos}</a>
       </Link>
       <Link href="/#skills">
         <a className="p-2" href="#skills">

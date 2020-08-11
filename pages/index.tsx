@@ -16,15 +16,15 @@ const index = () => (
   <>
     <MainHead />
     <Main id="top">
-      <Header className="pb-32" uselines>
+      <Header className="pb-24" uselines>
         <Nav />
-        <h2 className="text-center md:text-left text-4xl md:text-5xl font-medium max-w-sm md:max-w-2xl leading-none mx-auto md:mx-0 mb-8 md:mb-4 mt-6">
+        <h2 className="text-center md:text-left text-3xl md:text-5xl font-medium max-w-sm md:max-w-2xl leading-none mx-auto md:mx-0 mb-8 md:mb-4 mt-6">
           ¡Hola! Me dicen Vale y soy diseñadora gráfica
         </h2>
-        <h3 className="text-center md:text-left text-2xl md:text-3xl font-normal mb-4 mx-2 sm:mx-0">
+        <h3 className="text-center md:text-left text-xl md:text-3xl font-normal mb-4 mx-2 sm:mx-0">
           Te invito a ver los trabajos que más me gustan
         </h3>
-        <Button className="block sm:inline-block mt-10 mx-2 sm:mx-0" type="div">
+        <Button className="block sm:inline-block mt-6 mx-2 sm:mx-0 sm:mt-10" type="div">
           <AnchorLink href="#works">ver trabajos realizados</AnchorLink>
         </Button>
       </Header>
@@ -46,7 +46,11 @@ const index = () => (
             <hr className="mt-10 border-mediumgrey" />
           </li>
           <li className="flex-auto md:w-3/5 xl:w-1/3">
-            <Button href="#works" className="bg-darkpurple text-white">
+            <Button
+              href="/CV-Valentina-Morales_.pdf"
+              className="bg-darkpurple text-white"
+              target="_blank"
+            >
               Ver Experiencia Laboral
             </Button>
           </li>
@@ -56,7 +60,7 @@ const index = () => (
         </ul>
 
         <SkillsScores skills={SKILLS_SCORES} />
-        <Button className="mx-auto mt-6" type="div">
+        <Button className="mx-auto mt-6" type="div" variant="clear">
           <AnchorLink href="#top">
             <img
               src="https://res.cloudinary.com/hadmouse/image/upload/v1596344314/kiwa/Icon-arrow-up_buo1qx.svg"

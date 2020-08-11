@@ -74,6 +74,7 @@ const SKILLS_SCORES = [
 
 const ANALYTICS_ID = process.env.NEXT_PUBLIC_ANALYTICS_ID;
 const BASE_URL = process.env.BASE_URL;
+const MOCK_CONTACT_FORM = false;
 const MONGODB_CONNECT = process.env.MONGODB_CONNECT;
 const RC_PUBLIC_KEY = process.env.NEXT_PUBLIC_RC_PUBLIC_KEY;
 const RC_SECRET_KEY = process.env.RC_SECRET_KEY;
@@ -84,6 +85,7 @@ export {
   ANALYTICS_ID,
   BASE_URL,
   CATEGORIES,
+  MOCK_CONTACT_FORM,
   MONGODB_CONNECT,
   SKILLS,
   SKILLS_SCORES,

@@ -8,8 +8,8 @@ import Header from '../../components/Header';
 import Nav from '../../components/Nav';
 import Section from '../../components/Section';
 import Footer from '../../components/Footer';
+import BackToTop from '../../components/BackToTop';
 import Button from '../../components/Button';
-import AnchorLink from 'react-anchor-link-smooth-scroll';
 
 const projectsApiRoute = `${BASE_URL}/api/projects`;
 const imagesClasses = 'block w-full mb-6 md:mb-8';
@@ -63,12 +63,27 @@ const ProjectPage: React.FC = ({ project }: any) => {
     <>
       <MainHead title={metatitle} />
       <Main>
-        <Header uselines id="top">
+        <Header id="top">
           <Nav />
         </Header>
 
         <Section textAlign="left">
-          <article className="md:grid grid-cols-6 gap-8">
+          <article className="md:grid grid-cols-6 col-gap-8">
+            <div className="col-span-6 py-2 mb-2 hidden lg:block">
+              <Button
+                className="flex text-grey hover:text-purple"
+                variant="clear"
+                type="a"
+                href="/"
+              >
+                <img
+                  className="inline-block mr-2"
+                  src="https://res.cloudinary.com/hadmouse/image/upload/v1597025094/kiwa/icon-back_ri5wmi.svg"
+                  alt="Volver"
+                />
+                <span>Volver</span>
+              </Button>
+            </div>
             <header className="col-span-2 md:order-2 pb-6 md:pb-1">
               <div className="md:sticky top-2">
                 <h2 className="text-4xl font-medium leading-none pb-4 mb-3 is-active">
@@ -90,14 +105,7 @@ const ProjectPage: React.FC = ({ project }: any) => {
           </article>
 
           <div className="text-center">
-            <Button className="mx-auto mt-6" type="div">
-              <AnchorLink href="#top">
-                <img
-                  src="https://res.cloudinary.com/hadmouse/image/upload/v1596344314/kiwa/Icon-arrow-up_buo1qx.svg"
-                  alt="Volver arriba"
-                />
-              </AnchorLink>
-            </Button>
+            <BackToTop />
           </div>
         </Section>
 

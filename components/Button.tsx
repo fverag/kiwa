@@ -5,6 +5,7 @@ import { ButtonProps } from '../_types';
 const variantClasses = {
   rounded: 'font-bold border-2 border-white rounded-full uppercase px-8 py-4 my-4',
   link: 'text-base p-2 underline font-normal',
+  clear: '',
 };
 
 const typeClasses = {

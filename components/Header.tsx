@@ -5,7 +5,9 @@ import { HeaderProps, WithId } from '../_types';
 const checkAndRenderLines = (useLines: boolean) => {
   if (useLines) {
     return (
-      <div className="w-full h-full bg-lines absolute top-0 left-0 bg-fixed pointer-events-none"></div>
+      <div className="w-full h-full absolute top-0 left-0 pointer-events-none opacity-25 lg:opacity-100">
+        <div className="container bg-lines bg-no-repeat bg-auto h-full mx-auto"></div>
+      </div>
     );
   }
 

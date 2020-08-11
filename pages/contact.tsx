@@ -2,7 +2,7 @@ import { RC_PUBLIC_KEY } from '../_constants';
 import axios from 'axios';
 import { load } from 'recaptcha-v3';
 import React, { useState, useEffect } from 'react';
-import { ContactFormRequest, WithChildren, WithHash } from '../_types';
+import { ContactFormRequest, ContactFormResponse, WithChildren, WithHash } from '../_types';
 import validateForm from '../utilities/formValidation';
 import hasher from '../utilities/hasher';
 import MainHead from '../components/MainHead';
@@ -12,6 +12,7 @@ import Nav from '../components/Nav';
 import Section from '../components/Section';
 import Button from '../components/Button';
 import Footer from '../components/Footer';
+import clsx from 'clsx';
 
 const contactApiRoute = '/api/contactMe';
 let recaptcha;
@@ -22,17 +23,29 @@ const loadRecaptcha = () => {
   });
 };
 
-const doFormValidation = async (dataObject: ContactFormRequest, hash: string) => {
+const doFormValidation = async (
+  dataObject: ContactFormRequest,
+  hash: string
+): Promise<ContactFormResponse> => {
   const isValid: boolean | string[] = validateForm(dataObject);
 
   if (isValid === true) {
     return await sendForm(dataObject, hash);
   } else if (Array.isArray(isValid)) {
-    return `Encontramos los siguientes errores: \n${isValid.join('\n')}`;
+    return await new Promise((resolve) => {
+      resolve({
+        sentEmail: false,
+        status: false,
+        message: `Encontramos los siguientes errores: \n${isValid.join('\n')}`,
+      });
+    });
   }
 };
 
-const sendForm = async (dataObject: ContactFormRequest, hash: string) => {
+const sendForm = async (
+  dataObject: ContactFormRequest,
+  hash: string
+): Promise<ContactFormResponse> => {
   const rcToken = await recaptcha.execute('submitContactForm').then((token) => token);
   const sendableData = { ...dataObject, hash, rcToken };
 
@@ -62,11 +75,21 @@ export async function getServerSideProps(context) {
 
 const ContactPage: React.FC & WithHash = (props: WithChildren & WithHash) => {
   const hash = props.hash;
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
+  const initialForm = {
+    name: '',
+    email: '',
+    message: '',
+  };
+  const [form, setForm] = useState(initialForm);
   const [feedback, setFeedback] = useState(null);
-  const formData = { name, email, message };
+  const [sending, setSending] = useState(false);
+
+  const buttonBaseClasses = 'block mx-auto text-white w-full sm:w-64 focus:outline-none';
+  const buttonConditionalClasses = {
+    'bg-mediumlightgrey cursor-default': sending,
+    'bg-purple hover:bg-darkpurple focus:bg-darkpurple': !sending,
+  };
+  const buttonClasses = clsx(buttonBaseClasses, buttonConditionalClasses);
 
   useEffect(() => {
     loadRecaptcha();
@@ -82,8 +105,8 @@ const ContactPage: React.FC & WithHash = (props: WithChildren & WithHash) => {
 
         <Section
           narrow
-          className="sm:section-full-height"
-          innerClassName="bg-white rounded-xl mb-6 px-12"
+          className="sm:section-full-height py-4 sm:pt-20"
+          innerClassName="bg-white rounded-xl px-8 sm:px-12"
           textAlign="left"
         >
           <div className="flex items-center justify-around">
@@ -92,7 +115,7 @@ const ContactPage: React.FC & WithHash = (props: WithChildren & WithHash) => {
               src="https://res.cloudinary.com/hadmouse/image/upload/v1596765387/kiwa/Icon-avion_jtho6f.svg"
               alt="Icono de mensaje"
             />
-            <h2 className="text-2xl w-5/6 pl-6">
+            <h2 className="text-xl sm:text-2xl w-5/6 pl-4 sm:pl-6 leading-6 sm:leading-normal">
               ¿Quieres dejarme un mensaje? <br />
               Te respondo en breve.
             </h2>
@@ -100,48 +123,57 @@ const ContactPage: React.FC & WithHash = (props: WithChildren & WithHash) => {
 
           <input
             type="text"
+            autoComplete="name"
             placeholder="Nombre *"
-            className="block my-4 w-full"
+            className="text-input"
             onChange={(event) => {
-              setName(event.target.value);
+              setForm({ ...form, name: event.target.value });
             }}
+            value={form.name}
+            autoFocus
           />
           <input
-            type="text"
+            type="email"
+            autoComplete="email"
             placeholder="Correo electrónico *"
-            className="block my-4 w-full"
+            className="text-input"
             onChange={(event) => {
-              setEmail(event.target.value);
+              setForm({ ...form, email: event.target.value });
             }}
+            value={form.email}
           />
 
+          <p>
+            <label htmlFor="message" className="text-grey">
+              Mensaje
+            </label>
+          </p>
           <textarea
-            className="block my-4 w-full"
-            placeholder="Mensaje"
+            className="text-input textarea-input"
+            id="message"
             max-length="1500"
             onChange={(event) => {
-              setMessage(event.target.value);
+              setForm({ ...form, message: event.target.value });
             }}
+            value={form.message}
           ></textarea>
 
           <Button
             onClick={() => {
-              doFormValidation(formData, hash).then((message) => {
-                let theMessage;
+              setSending(true);
 
-                if (typeof message === 'object') {
-                  theMessage = message.message;
-                  setName('');
-                  setEmail('');
-                  setMessage('');
-                } else {
-                  theMessage = message;
+              doFormValidation(form, hash).then((response) => {
+                setSending(false);
+
+                if (response.status) {
+                  setForm(initialForm);
                 }
 
-                setFeedback(theMessage);
+                setFeedback(response.message);
               });
             }}
             type="button"
+            className={buttonClasses}
           >
             Enviar
           </Button>
