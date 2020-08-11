@@ -1,6 +1,7 @@
 import React from 'react';
 import sanitize from '../../utilities/sanitize';
-import { BASE_URL, CATEGORIES } from '../../_constants';
+import { getData } from '../api/projects';
+import { CATEGORIES } from '../../_constants';
 import { ProjectImage } from '../../_types';
 import MainHead from '../../components/MainHead';
 import Main from '../../components/Main';
@@ -11,22 +12,17 @@ import Footer from '../../components/Footer';
 import BackToTop from '../../components/BackToTop';
 import Button from '../../components/Button';
 
-const projectsApiRoute = `${BASE_URL}/api/projects`;
 const imagesClasses = 'block w-full mb-6 md:mb-8';
 
 export async function getStaticPaths() {
-  const response = await fetch(projectsApiRoute);
-  const jsonResponse = await response.json();
-  const projects = jsonResponse.data;
+  let projects = await getData();
   const paths = projects.map((project) => `/project/${sanitize(project.title)}`);
 
   return { paths, fallback: false };
 }
 
 export async function getStaticProps({ params }) {
-  const response = await fetch(projectsApiRoute + `?slug=${params.slug}`);
-  const jsonResponse = await response.json();
-  const project = jsonResponse.data;
+  let project = await getData(undefined, params.slug);
 
   return {
     props: { project },

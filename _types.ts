@@ -21,6 +21,11 @@ export interface ContactFormResponse {
   message: string;
 }
 
+export interface FeedProps {
+  id?: string;
+  projects: ProjectPreviewEntry[];
+}
+
 export interface HeaderProps {
   className?: string;
   children?: React.ReactNode;
@@ -53,6 +58,7 @@ export interface ProjectImage {
 }
 
 export interface ProjectPreviewEntry {
+  _id?: string;
   id: number;
   title: string;
   category_id?: number;

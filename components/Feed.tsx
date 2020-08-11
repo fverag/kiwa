@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
-import useSWR from 'swr';
-import fetcherFunction from '../utilities/fetcher';
 import ProjectPreview from './ProjectPreview';
-import ProjectPreviewPlaceholder from './ProjectPreviewPlaceholder';
 import { CATEGORIES } from '../_constants';
-import { WithId } from '../_types';
+import { FeedProps } from '../_types';
 
 const sectionClasses =
   'sm:container mx-2 sm:mx-auto py-5 px-5 sm:px-8 bg-white rounded-lg -mt-16 z-10 relative';
@@ -44,60 +41,11 @@ const setButtonClasses = (isCurrent: boolean): string => {
   return clsx(baseButtonClass, activeClass);
 };
 
-const renderPlaceholderUlAndButtons = (id: string) => {
-  const projectGroups = JSON.parse(JSON.stringify(CATEGORIES));
-  const ulClasses = setUlClasses(true);
-  const navGroup = [];
-  const projectsPlaceholders = [];
-  const placeholdersTiers = [2, 3, 1, 1, 3, 2, 1, 1];
-  const quantityPlaceholders = 8;
-
-  for (let i = 0; i < quantityPlaceholders; i += 1) {
-    let placeholderTier = placeholdersTiers[i];
-    let placeholderLiClasses = setProjectLiClasses(placeholderTier);
-
-    projectsPlaceholders.push(
-      <li key={i} className={placeholderLiClasses}>
-        <ProjectPreviewPlaceholder />
-      </li>
-    );
-  }
-
-  for (let projectGroup of projectGroups) {
-    const buttonClasses = setButtonClasses(projectGroup.id === 1);
-
-    navGroup.push(
-      <button className={buttonClasses} key={projectGroup.id}>
-        <span>{projectGroup.name}</span>
-      </button>
-    );
-  }
-
-  return (
-    <section id={id} className={sectionClasses}>
-      <nav className="flex justify-evenly items-start">{navGroup}</nav>
-      <ul className={ulClasses}>{projectsPlaceholders}</ul>
-    </section>
-  );
-};
-
-const Feed: React.FC<WithId> = ({ id }: WithId) => {
-  const route = '/api/projects';
+const Feed: React.FC<FeedProps> = ({ id, projects }: FeedProps) => {
   const [category, setCategory] = useState(1);
-  const { data, error } = useSWR(route, fetcherFunction);
   const ulGroups = [];
   const navGroup = [];
   const projectGroups = JSON.parse(JSON.stringify(CATEGORIES));
-
-  if (error) {
-    return <div>{error.messsage}</div>;
-  }
-
-  if (!data) {
-    return renderPlaceholderUlAndButtons(id);
-  }
-
-  const projects = data.data;
 
   for (let entry of projects) {
     const projectLiClasses = setProjectLiClasses(entry.tier);

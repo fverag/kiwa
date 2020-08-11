@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { ProjectPreviewProps } from '../_types';
 import sanitize from '../utilities/sanitize';
-import clsx from 'clsx';
 
 const filterPlaceholder = (imageUrl: string) => {
   return imageUrl.replace('/image/upload', '/image/upload/${t}');
@@ -81,7 +80,6 @@ const setImageSrcsetAndSizes = (imageTier: number, imageUrl: string) => {
   const filterableImage = filterPlaceholder(imageUrl);
   const imageUrls = [];
   const imageSizes = [];
-  /* let count = 0;*/
 
   for (let key in transformations) {
     if (Object.prototype.hasOwnProperty.call(transformations, key)) {
@@ -100,27 +98,12 @@ const ProjectPreview: React.FC<ProjectPreviewProps> = ({ entry }: ProjectPreview
   const [srcset, sizes] = setImageSrcsetAndSizes(entry.tier, entry.image.url);
   const slug = sanitize(entry.title);
   const url = `/project/${slug}`;
-  const [opacity, setOpacity] = useState(0);
-  const baseImgClasses = 'w-full h-full object-cover object-center transition-opacity duration-300';
-  const imgOpacityClasses = {
-    'opacity-100': opacity === 1,
-    'opacity-0': opacity === 0,
-  };
-  const imgClasses = clsx(baseImgClasses, imgOpacityClasses);
-  const onLoadFunction = () => {
-    setOpacity(1);
-  };
+  const baseImgClasses = 'w-full h-full object-cover object-center';
 
   return (
     <Link href={url}>
       <a className="w-full h-full">
-        <img
-          src={entry.image.url}
-          srcSet={srcset}
-          sizes={sizes}
-          className={imgClasses}
-          onLoad={onLoadFunction}
-        />
+        <img src={entry.image.url} srcSet={srcset} sizes={sizes} className={baseImgClasses} />
       </a>
     </Link>
   );
