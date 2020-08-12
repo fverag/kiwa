@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 import { ContactFormRequest, ContactFormResponse, WithChildren, WithHash } from '../_types';
 import validateForm from '../utilities/formValidation';
 import hasher from '../utilities/hasher';
-import MainHead from '../components/MainHead';
+import MainHead, { analytics } from '../components/MainHead';
 import Main from '../components/Main';
 import Header from '../components/Header';
 import Nav from '../components/Nav';
@@ -30,6 +30,11 @@ const doFormValidation = async (
   const isValid: boolean | string[] = validateForm(dataObject);
 
   if (isValid === true) {
+    analytics.track('sent form', {
+      label: `Nombre: ${dataObject.name} ;Email: ${dataObject.email}`,
+      category: 'UX',
+    });
+
     return await sendForm(dataObject, hash);
   } else if (Array.isArray(isValid)) {
     return await new Promise((resolve) => {

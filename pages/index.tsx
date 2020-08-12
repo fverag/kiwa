@@ -1,6 +1,6 @@
 import React from 'react';
 import { getData } from './api/projects';
-import MainHead from '../components/MainHead';
+import MainHead, { analytics } from '../components/MainHead';
 import Main from '../components/Main';
 import Header from '../components/Header';
 import Nav from '../components/Nav';
@@ -61,6 +61,12 @@ const index = ({ projects }: FeedProps) => {
             <li className="flex-auto md:w-3/5 xl:w-1/3">
               <Button
                 href="/CV-Valentina-Morales_.pdf"
+                onClick={() => {
+                  analytics.track('user click', {
+                    label: 'cvDownload',
+                    category: 'UX',
+                  });
+                }}
                 className="bg-darkpurple text-white"
                 target="_blank"
               >

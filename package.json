@@ -19,9 +19,11 @@
     ]
   },
   "dependencies": {
+    "@analytics/google-analytics": "^0.4.1",
     "@types/grecaptcha": "^3.0.1",
     "@types/mongoose": "^5.7.32",
     "@zeit/next-css": "^1.0.1",
+    "analytics": "^0.5.5",
     "axios": "^0.19.2",
     "clsx": "^1.1.1",
     "cookie": "^0.4.1",
