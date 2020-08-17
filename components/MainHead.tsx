@@ -4,6 +4,7 @@ import Analytics from 'analytics';
 import googleAnalytics from '@analytics/google-analytics';
 import { MainHeadProps } from '../_types';
 import { ANALYTICS_ID } from '../_constants';
+import Favicon from '../components/Favicon';
 
 const analytics = Analytics({
   app: 'ValentinaMorales',
@@ -35,6 +36,7 @@ const MainHead: React.FC<MainHeadProps> = ({
         href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap"
         rel="stylesheet"
       />
+      <Favicon />
       {children}
     </Head>
   );
