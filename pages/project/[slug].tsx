@@ -12,7 +12,7 @@ import Footer from '../../components/Footer';
 import BackToTop from '../../components/BackToTop';
 import Button from '../../components/Button';
 
-const imagesClasses = 'block w-full mb-6 md:mb-8';
+const mediaClasses = 'block w-full mb-6 md:mb-8';
 
 export async function getStaticPaths() {
   let projects = await getData();
@@ -29,7 +29,18 @@ export async function getStaticProps({ params }) {
   };
 }
 
-const getCategoryName = (category_id: number) => {
+const getMediaExtension = (entryUrl: string): string => {
+  return entryUrl.substr(entryUrl.lastIndexOf('.') + 1).toLowerCase();
+};
+
+const isImage = (entryUrl: string): boolean => {
+  const imageFormats = ['png', 'jpg', 'jpeg', 'jp2', 'gif', 'webp', 'bmp'];
+  const entryExtension = getMediaExtension(entryUrl);
+
+  return imageFormats.indexOf(entryExtension) >= 0;
+};
+
+const getCategoryName = (category_id: number): string => {
   for (let cat of CATEGORIES) {
     if (category_id === cat.id) {
       return cat.name;
@@ -39,16 +50,29 @@ const getCategoryName = (category_id: number) => {
   return null;
 };
 
+const guessVideoType = (entryUrl: string): string => {
+  const entryExtension = getMediaExtension(entryUrl);
+
+  return `video/${entryExtension}`;
+};
+
 const renderComplementaryImages = (images: ProjectImage[]) => {
-  return images.map((image) => (
-    <img
-      src={image.url}
-      alt={image.title}
-      title={image.title}
-      key={image.title}
-      className={imagesClasses}
-    />
-  ));
+  //render image if it is type image, else assume video
+  return images.map((entry) =>
+    isImage(entry.url) ? (
+      <img
+        src={entry.url}
+        alt={entry.title}
+        title={entry.title}
+        key={entry.title}
+        className={mediaClasses}
+      />
+    ) : (
+      <video key={entry.title} autoPlay muted loop className={mediaClasses} title={entry.title}>
+        <source src={entry.url} type={guessVideoType(entry.url)} />
+      </video>
+    )
+  );
 };
 
 const ProjectPage: React.FC = ({ project }: any) => {
@@ -82,7 +106,7 @@ const ProjectPage: React.FC = ({ project }: any) => {
             </div>
             <header className="col-span-2 md:order-2 pb-6 md:pb-1">
               <div className="md:sticky top-2">
-                <h2 className="text-4xl font-medium leading-none pb-4 mb-3 is-active">
+                <h2 className="text-4xl font-medium leading-none pb-4 mb-3 is-active is-active--left">
                   {project.title}
                 </h2>
                 <h3 className="text-darkpurple text-2xl pt-2 mb-4">Categoría: {categoryTitle}</h3>
@@ -94,7 +118,7 @@ const ProjectPage: React.FC = ({ project }: any) => {
                 src={project.image.url}
                 alt={project.image.title}
                 title={project.image.title}
-                className={imagesClasses}
+                className={mediaClasses}
               />
               {renderComplementaryImages(project.complementaryImages)}
             </div>
