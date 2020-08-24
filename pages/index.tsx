@@ -35,7 +35,7 @@ const index = ({ projects }: FeedProps) => {
             ¡Hola! Me dicen Vale y soy diseñadora gráfica
           </h2>
           <h3 className="text-center md:text-left text-xl md:text-3xl font-normal mb-4 mx-2 sm:mx-0">
-            Te invito a ver los trabajos que más me gustan
+            Te invito a ver mis trabajos favoritos
           </h3>
           <Button className="block sm:inline-block mt-6 mx-2 sm:mx-0 sm:mt-10" type="div">
             <AnchorLink href="#works">ver trabajos realizados</AnchorLink>
