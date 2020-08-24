@@ -99,11 +99,14 @@ const ProjectPreview: React.FC<ProjectPreviewProps> = ({ entry }: ProjectPreview
   const slug = sanitize(entry.title);
   const url = `/project/${slug}`;
   const baseImgClasses = 'w-full h-full object-cover object-center';
+  const pClassName =
+    'absolute bottom-0 left-0 right-0 w-full h-auto text-white bg-pink bg-opacity-90 p-3 m-0 opacity-0 transition-opacity duration-300';
 
   return (
     <Link href={url}>
-      <a className="w-full h-full">
+      <a className="w-full h-full relative block project-preview">
         <img src={entry.image.url} srcSet={srcset} sizes={sizes} className={baseImgClasses} />
+        <p className={pClassName}>{entry.shortDescription}</p>
       </a>
     </Link>
   );

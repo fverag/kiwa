@@ -96,3 +96,16 @@
   min-height: 6rem;
   max-height: 12rem;
 }
+
+@media screen and (max-width: theme('screens.lg')) {
+  .project-preview:hover p {
+    display: none !important;
+  }
+}
+
+@media screen and (min-width: theme('screens.lg')) {
+  .project-preview:hover p {
+    opacity: 1 !important;
+    height: auto !important;
+  }
+}
