@@ -1,12 +1,12 @@
 const CATEGORIES = [
   {
-    name: 'Marketing digital',
-    id: 1,
+    name: 'Diseño Web / UI',
+    id: 2,
     entries: [],
   },
   {
-    name: 'Diseño Web / UI',
-    id: 2,
+    name: 'Marketing digital',
+    id: 1,
     entries: [],
   },
   {
@@ -15,6 +15,7 @@ const CATEGORIES = [
     entries: [],
   },
 ];
+const DEFAULT_CATEGORY = 2;
 const SKILLS = [
   {
     title: 'Fácil adaptación y trabajo en equipo',
@@ -85,6 +86,7 @@ export {
   ANALYTICS_ID,
   BASE_URL,
   CATEGORIES,
+  DEFAULT_CATEGORY,
   MOCK_CONTACT_FORM,
   MONGODB_CONNECT,
   SKILLS,

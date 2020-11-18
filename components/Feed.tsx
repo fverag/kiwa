@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
 import ProjectPreview from './ProjectPreview';
-import { CATEGORIES } from '../_constants';
-import { FeedProps } from '../_types';
+import { CATEGORIES, DEFAULT_CATEGORY } from '../_constants';
+import { Category, FeedProps } from '../_types';
 
 const sectionClasses =
   'sm:container mx-2 sm:mx-auto py-5 px-5 sm:px-8 bg-white rounded-lg -mt-16 z-10 relative';
@@ -41,16 +41,26 @@ const setButtonClasses = (isCurrent: boolean): string => {
   return clsx(baseButtonClass, activeClass);
 };
 
+const getProjectGroupByID = (projectGroups: Category[], id: number): Category | null => {
+  for (const projectGroup of projectGroups) {
+    if (projectGroup.id === id) {
+      return projectGroup;
+    }
+  }
+
+  return null;
+};
+
 const Feed: React.FC<FeedProps> = ({ id, projects }: FeedProps) => {
-  const [category, setCategory] = useState(1);
+  const [category, setCategory] = useState(DEFAULT_CATEGORY);
   const ulGroups = [];
   const navGroup = [];
   const projectGroups = JSON.parse(JSON.stringify(CATEGORIES));
 
-  for (let entry of projects) {
+  for (const entry of projects) {
     const projectLiClasses = setProjectLiClasses(entry.tier);
 
-    projectGroups[entry.category_id - 1].entries.push(
+    getProjectGroupByID(projectGroups, entry.category_id).entries.push(
       <li key={entry.id} className={projectLiClasses}>
         <ProjectPreview entry={entry} />
       </li>

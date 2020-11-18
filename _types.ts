@@ -8,6 +8,12 @@ export interface ButtonProps {
   onClick?: () => void;
 }
 
+export interface Category {
+  id: number;
+  name: string;
+  entries: React.ReactElement[];
+}
+
 export interface ContactFormRequest {
   name: string;
   email: string;
