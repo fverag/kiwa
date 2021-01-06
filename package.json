@@ -24,7 +24,7 @@
     "@types/mongoose": "^5.7.32",
     "@zeit/next-css": "^1.0.1",
     "analytics": "^0.5.5",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "clsx": "^1.1.1",
     "cookie": "^0.4.1",
     "mongoose": "^5.9.25",
